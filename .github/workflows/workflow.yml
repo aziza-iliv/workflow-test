@@ -1,0 +1,22 @@
+name: reusable workflow
+
+on:
+  workflow_call:
+      secrets:
+        PASSWORD:
+          description: " password "
+          required: true
+
+jobs:
+  console-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print PASSWORD
+        run: echo "${{ secrets.PASSWORD }}"
+      - name: print github
+        run: echo "${{ toJSON( github) }}"
+  checkout:
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v4
+    - run: ls -a
